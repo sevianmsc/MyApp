@@ -17,6 +17,7 @@ export class HomePage {
   };
   msj = "";
   carga = false;
+  mostrarBtnRecuperar= false;
 
   constructor(private router: Router, private animation: AnimationController) { }
 
@@ -43,11 +44,17 @@ export class HomePage {
 
       }
       else {
-        this.msj = "Credenciales erroneas"
+        this.msj = "Credenciales erroneas";
+        this.mostrarBtnRecuperar = true;
       }
     } else {
       this.msj = 'Credenciales no pueden estar vacias';
+      this.mostrarBtnRecuperar = false;
     }
+  }
+
+  recuperar(){
+
   }
 
 ngAfterContentInit(){
@@ -62,39 +69,16 @@ const imagen = document.querySelector(
 const animacion = this.animation
 .create()
 .addElement(imagen)
-.duration(3000)
+.duration(1000)
 .iterations(Infinity)
 .keyframes([
   {
-    offset: 0,
-    opacity: '1',
-    border: '10px solid white',
-    transform: 'translateY(100px)',
-  },
-  {
-    offset: 0.25,
-    opacity: '0.5',
-    border: '10px solid red',
-    transform: 'translateX(100px)',
-  },
-  {
     offset: 0.5,
-    opacity: '1',
-    border: '10px solid blue',
-    transform: 'translateY(-100px)',
+    border: '10px 	solid #C21E56',
+    //transform: 'translateY(0px)',
   },
-  {
-    offset: 0.75,
-    opacity: '1',
-    border: '10px solid green',
-    transform: 'translateX(-100px)',
-  },
-  {
-    offset: 1,
-    opacity: '1',
-    border: '10px solid cyan',
-    transform: 'translateY(100px)',
-  },
+ 
+ 
   
 ]);
 animacion.play();

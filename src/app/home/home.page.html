@@ -27,7 +27,7 @@
         </ion-item>
         <ion-item>
           <ion-input type="password" [(ngModel)]="user.password" label="Contraseña" labelPlacement="floating" placeholder="Ingrese Su Contraseña">
-            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            <ion-input-password-toggle id="password-toggle" slot="end"></ion-input-password-toggle>
           </ion-input> 
         </ion-item>
         <div id="cuadroMsj">
@@ -40,6 +40,11 @@
         <ion-button (click)="conectar()" shape="round" size="Small" id="btnConectar">
           Conectar
         </ion-button>
+        <div *ngIf="mostrarBtnRecuperar">
+          <ion-button  shape="round" size="Small" id="btnRecuperar">
+            Recuperar Contraseña
+          </ion-button>
+        </div>
       </ion-list>
     </ion-card-content>
       

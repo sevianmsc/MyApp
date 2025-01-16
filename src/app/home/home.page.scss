@@ -1,3 +1,5 @@
+// color principal es 	#C21E56
+
 #container {
   text-align: center;
 
@@ -31,6 +33,9 @@ ion-header ion-toolbar ion-title{
 }
 
 #btnConectar{
+  margin-top: 5%;
+  //color: white;
+  --background: 	#C21E56;
 
 }
 
@@ -58,4 +63,14 @@ ion-header ion-toolbar ion-title{
   margin-top: 2%;
   margin: auto;
 
+}
+
+#mostrarPass{
+  --color: 	#C21E56;
+}
+
+#btnRecuperar{
+  margin-top: 5%;
+  //color: white;
+  --background: 	#C21E56;
 }

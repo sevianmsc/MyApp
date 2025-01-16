@@ -53,8 +53,19 @@ export class HomePage {
     }
   }
 
-  recuperar(){
+  recuperarContrasenia() {
+    // Mostrar spinner de carga cuando se haga clic en el botón de recuperar contraseña
+    this.carga = true;
+    this.msj = 'Cargando recuperación...';
 
+    // Simular un retraso de 2 segundos antes de redirigir
+    setTimeout(() => {
+      // Redirigir al usuario a la página de recuperación de contraseña
+      console.log('Redirigiendo a la página de recuperación de contraseña...');
+      this.router.navigate(['/recuperar-contrasenia']);
+      this.carga = false; // Desactivar el spinner
+      this.msj = ''; // Limpiar mensaje
+    }, 2000);
   }
 
 ngAfterContentInit(){

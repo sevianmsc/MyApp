@@ -13,7 +13,7 @@ import { RecuperarContraseniaPage } from './recuperar-contrasenia.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    RecuperarContraseniaPageRoutingModule
+    RecuperarContraseniaPageRoutingModule,
   ],
   declarations: [RecuperarContraseniaPage]
 })

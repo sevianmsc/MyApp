@@ -1,5 +1,27 @@
 // color principal es 	#C21E56
 
+ion-content {
+  --background: url('/assets/img/duoc-fondo.webp') no-repeat center center;
+  --background-size: cover;
+  height: 100%;
+}
+
+#container {
+  position: relative;
+  z-index: 1; /* Asegura que el contenido se muestre encima de la imagen */
+}
+
+#cardLogin {
+  z-index: 2; /* Asegura que el card también se muestre encima de la imagen */
+  opacity: 100%;
+  color:#C21E56; 
+}
+
+#logoDuoc{
+  width: 200px;
+  margin: auto;
+}
+
 #container {
   text-align: center;
 
@@ -74,4 +96,3 @@ ion-header ion-toolbar ion-title{
   //color: white;
   --background: 	#C21E56;
 }
-

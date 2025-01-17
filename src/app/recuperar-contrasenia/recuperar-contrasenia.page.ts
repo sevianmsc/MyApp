@@ -1,22 +1,3 @@
-/*
- import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-recuperar-contrasenia',
-  templateUrl: './recuperar-contrasenia.page.html',
-  styleUrls: ['./recuperar-contrasenia.page.scss'],
-  standalone: false,
-})
-export class RecuperarContraseniaPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
-*/
-
 import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
@@ -106,7 +87,7 @@ export class RecuperarContraseniaPage {
         this.msj = "Contraseña no puede ser igual que la anterior";
       }
       } else {
-        this.msj = 'Nombre de usuario inexistente';
+        this.msj = 'Nombre de usuario erroneo';
       }
       } else {
         this.msj = 'No puedes dejar campos vacíos';

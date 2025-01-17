@@ -8,12 +8,15 @@ import { RecuperarContraseniaPageRoutingModule } from './recuperar-contrasenia-r
 
 import { RecuperarContraseniaPage } from './recuperar-contrasenia.page';
 
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     RecuperarContraseniaPageRoutingModule,
+    MatProgressSpinner
   ],
   declarations: [RecuperarContraseniaPage]
 })

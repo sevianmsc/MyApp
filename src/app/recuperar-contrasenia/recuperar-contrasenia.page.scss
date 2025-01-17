@@ -4,3 +4,16 @@
     --background: 	#C21E56;
   
   }
+
+  #seccionCarga {
+    padding: 2%;
+    margin: 10px;
+  }
+  
+  #seccionCarga mat-spinner {
+    width: 15% !important;
+    display: block;
+    margin-top: 2%;
+    margin: auto;
+  
+  }

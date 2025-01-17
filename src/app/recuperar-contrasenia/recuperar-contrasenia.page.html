@@ -30,6 +30,11 @@
               <ion-input-password-toggle id="password-toggle" slot="end"></ion-input-password-toggle>
             </ion-input>
           </ion-item>
+          <ion-item>
+            <ion-input label="Repetir Contraseña" [(ngModel)]="user.repetir_password" labelPlacement="floating" placeholder="Ingrese De Nuevo Su Nueva Contraseña">
+              <ion-input-password-toggle id="password-toggle" slot="end"></ion-input-password-toggle>
+            </ion-input>
+          </ion-item>
         <div id="cuadroMsj">
           <ion-label>{{msj}}</ion-label>
           <div id="seccionCarga" *ngIf="carga">

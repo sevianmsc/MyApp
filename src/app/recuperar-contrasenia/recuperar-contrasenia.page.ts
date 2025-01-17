@@ -14,6 +14,7 @@ export class RecuperarContraseniaPage {
   user = {
     usuario: '',
     password: '',
+    repetir_password: '',
   };
   msj = "";
   carga = false;
@@ -72,7 +73,8 @@ export class RecuperarContraseniaPage {
   recuperar() {
       if (this.user.usuario.length > 0 && this.user.password.length > 0) {
         if (this.user.usuario == "sevian") {
-          if (this.user.password != "1234") {
+          if (this.user.repetir_password == this.user.password) {
+            if (this.user.password != "1234") {
       this.carga = true;
       this.msj = 'Éxito! Contraseña cambiada...';
 
@@ -83,15 +85,18 @@ export class RecuperarContraseniaPage {
         this.msj = ''; // Limpiar mensaje
       }, 2000);
       } else {
-        this.msj = "Contraseña no puede ser igual que la anterior";
+        this.msj = "Contraseña no puede ser igual a la anterior";
       }
       } else {
-        this.msj = 'Nombre de usuario erroneo';
+        this.msj = 'Contraseña no coincide';
       }
       } else {
-        this.msj = 'No puedes dejar campos vacíos';
+        this.msj = 'Nombre de usuario erróneo';
+      }
+      } else {
+        this.msj = 'No puede dejar campos vacíos';
+      }
   }
-}
 
 ngAfterContentInit(){
   this.animacionLogin();

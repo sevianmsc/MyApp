@@ -9,8 +9,17 @@
     <ion-toolbar>
       <ion-title size="large">Perfil de Usuario</ion-title>
     </ion-toolbar>
+    
   </ion-header>
   <div id="container">
-    <ion-title>Bienvenido, {{nombreUsuario}}</ion-title>
+    <ion-card>
+      <ion-img src="assets/img/bojji-access.jpg" id="logoLogin"></ion-img>
+      <ion-card-title>Bienvenido, {{nombreUsuario}}</ion-card-title>
+      <ion-card-subtitle>¿Que quieres hacer hoy?</ion-card-subtitle>
+      <ion-button  shape="round" size="Small" id="btnRecuperar" (click)="recuperarContrasenia()">
+        Recuperar Contraseña
+      </ion-button>
+    </ion-card>
+    
   </div>
 </ion-content>

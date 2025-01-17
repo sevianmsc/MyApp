@@ -30,3 +30,22 @@ ion-content {
     width: 200px;
     margin: auto;
   }
+
+  #cardLogin {
+    z-index: 2; /* Asegura que el card también se muestre encima de la imagen */
+    opacity: 100%;
+    color:#C21E56; 
+  }
+
+  #container ion-card ion-card-header ion-img {
+    width: 170px;
+    height: 170px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    object-fit: cover;
+    border: 2px solid black;
+    border-radius: 50%;
+    overflow: hidden;
+    
+  }

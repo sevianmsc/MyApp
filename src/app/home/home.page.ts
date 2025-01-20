@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
+import { AuthService } from '../Servicios/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomePage {
   carga = false;
   mostrarBtnRecuperar= false;
 
-  constructor(private router: Router, private animation: AnimationController) { }
+  constructor(private router: Router, private animation: AnimationController, private auth:AuthService) { }
 
 
 //Boton conectar con router a Perfil
@@ -27,7 +28,7 @@ export class HomePage {
   conectar() {
 
     if (this.user.usuario.length > 0 && this.user.password.length > 0) {
-      if (this.user.usuario == "sevian" && this.user.password == "1234") {
+      if (this.auth.login(this.user.usuario,this.user.password)) {
 
 //spiner de carga simulando delay con MS
 

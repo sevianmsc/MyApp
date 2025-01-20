@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
+import { AuthService } from '../Servicios/auth.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -9,7 +11,12 @@ import { AnimationController } from '@ionic/angular';
   standalone: false,
 })
 export class PerfilPage implements OnInit, AfterViewInit {
-  constructor(private router: Router, private animation: AnimationController) {}
+  constructor(
+    private router: Router,
+    private animation: AnimationController,
+    private auth: AuthService,
+    private toast: ToastController
+  ) {}
   user = {
     usuario: '',
     password: '',
@@ -30,8 +37,22 @@ export class PerfilPage implements OnInit, AfterViewInit {
     this.router.navigate(['/recuperar-contrasenia']);
   }
 
-  cerrarSesion() {
+  logout() {
+    this.auth.logout();
     this.router.navigate(['/home']);
+    this.generarToast('Usuario Desconectado');
+  }
+
+  generarToast(message: string) {
+    const toast = this.toast.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+    });
+
+    toast.then((res) => {
+      res.present();
+    });
   }
 
   animacionAutito() {

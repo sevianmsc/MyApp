@@ -1,0 +1,17 @@
+ion-content {
+  --background: url("/assets/img/movil.jpg") no-repeat center center;
+  --background-size: cover;
+  height: 100%;
+}
+
+#btnRegister {
+  --background: #c21e56;
+  margin-top: 5px;
+}
+ion-card-content {
+  padding: 15%;
+}
+
+#container ion-card ion-card-header ion-card-title {
+  font-size: xx-large;
+}

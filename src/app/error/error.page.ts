@@ -22,7 +22,7 @@ export class ErrorPage implements OnInit {
   generarToast(message: string) {
     const toast = this.toast.create({
       message: message,
-      duration: 3000,
+      duration: 1000,
       position: 'bottom',
     });
 

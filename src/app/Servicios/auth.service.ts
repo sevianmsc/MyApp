@@ -67,4 +67,6 @@ export class AuthService {
   logout() {
     this.storage.removeItem('conectado');
   }
+
+  loginAPI(user:string,pass=string)
 }

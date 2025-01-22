@@ -1,0 +1,22 @@
+{
+    "users":[
+        {
+            "id":1,
+            "username":"sevian",
+            "correo": "sevian@correo.cl",
+            "pass": "1234"
+        },
+        {
+            "id":2,
+            "username":"admin",
+            "correo": "admin@correo.cl",
+            "pass": "admin1234"
+        },
+        {
+            "id":3,
+            "username":"otrouser",
+            "correo": "otro@correo.cl",
+            "pass": "otro1234"
+        }
+    ]
+}

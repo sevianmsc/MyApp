@@ -10,6 +10,10 @@ ion-content {
   height: 100%;
 }
 
+#password-toggle{
+  --color: #C21E56;
+}
+
 #container {
   position: relative;
   z-index: 1; /* Asegura que el contenido se muestre encima de la imagen */

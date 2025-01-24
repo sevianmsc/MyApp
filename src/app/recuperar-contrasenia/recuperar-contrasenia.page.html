@@ -20,22 +20,22 @@
   <div id="container">
     <ion-card color="light">
       <ion-card-header>
-        <ion-card-subtitle>Ingrese su nombre de usuario y una nueva contraseña</ion-card-subtitle>
+        <ion-card-subtitle>Ingrese su usuario y una nueva contraseña</ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-input label="Usuario" [(ngModel)]="user.usuario" labelPlacement="floating" placeholder="Ingrese Su Usuario"></ion-input>
+            <ion-input label="Usuario" [(ngModel)]="user.usuario" labelPlacement="floating" placeholder="Usuario"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Nueva Contraseña" [(ngModel)]="user.password" labelPlacement="floating" placeholder="Ingrese Nueva Contraseña">
-              <ion-input-password-toggle id="password-toggle" slot="end"></ion-input-password-toggle>
+            <ion-input label="Nueva Contraseña" [(ngModel)]="user.password" labelPlacement="floating" placeholder="Nueva Contraseña">
+              <ion-input-password-toggle id="password-toggle" color="danger" slot="end"></ion-input-password-toggle>
             </ion-input>
           </ion-item>
           <ion-item>
             <ion-input label="Repetir Contraseña" [(ngModel)]="user.repetir_password" labelPlacement="floating" placeholder="Repita Nueva Contraseña">
-              <ion-input-password-toggle id="password-toggle" slot="end"></ion-input-password-toggle>
+              <ion-input-password-toggle id="password-toggle" color="danger" slot="end"></ion-input-password-toggle>
             </ion-input>
           </ion-item>
         <div id="cuadroMsj">

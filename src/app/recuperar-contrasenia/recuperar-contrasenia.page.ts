@@ -23,56 +23,10 @@ export class RecuperarContraseniaPage {
   constructor(private router: Router, private animation: AnimationController) { }
 
 
-//Boton conectar con router a Perfil
-
-  conectar() {
-
-    if (this.user.usuario.length > 0 && this.user.password.length > 0) {
-      if (this.user.usuario == "sevian" && this.user.password == "1234") {
-
-//spiner de carga simulando delay con MS
-
-        let navigationExtras: NavigationExtras = {
-          state: { user: this.user },
-        };
-        this.carga =true;
-        this.msj="Conexion Exitosa"
-        setTimeout(()=>{
-        this.router.navigate(['/perfil'], navigationExtras);
-        this.msj='';
-        this.carga = false;
-      },3000);
-
-      }
-      else {
-        this.msj = "Credenciales erroneas";
-        this.mostrarBtnRecuperar = true;
-      }
-    } else {
-      this.msj = 'Credenciales no pueden estar vacias';
-      this.mostrarBtnRecuperar = false;
-    }
-  }
-
-  recuperarContrasenia() {
-    // Mostrar spinner de carga cuando se haga clic en el botón de recuperar contraseña
-    this.carga = true;
-    this.msj = 'Cargando recuperación...';
-
-    // Simular un retraso de 2 segundos antes de redirigir
-    setTimeout(() => {
-      // Redirigir al usuario a la página de recuperación de contraseña
-      console.log('Redirigiendo a la página de recuperación de contraseña...');
-      this.router.navigate(['/recuperar-contrasenia']);
-      this.carga = false; // Desactivar el spinner
-      this.msj = ''; // Limpiar mensaje
-    }, 2000);
-
-  }
 
   recuperar() {
       if (this.user.usuario.length > 0 && this.user.password.length > 0) {
-        if (this.user.usuario == "sevian") {
+        if (this.user.usuario) {
           if (this.user.repetir_password == this.user.password) {
             if (this.user.password != "1234") {
       this.carga = true;

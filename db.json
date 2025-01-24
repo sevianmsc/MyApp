@@ -2,20 +2,27 @@
     "users": [
       {
         "id": 1,
-        "name": "sevian",
+        "username": "sevian",
         "correo": "sevian@correo.cl",
         "pass": "1234",
         "role": "student" 
       },
       {
         "id": 2,
-        "name": "María González",
-        "correo": "maria.gonzalez@duocuc.cl",
-        "pass": "hashed_password",
+        "username": "speed",
+        "correo": "speed@correo.cl",
+        "pass": "1234",
+        "role": "student"
+      },
+      {
+        "id": 3,
+        "username": "elprofe",
+        "correo": "profe@correo.cl",
+        "pass": "1234",
         "role": "teacher"
       }
     ],
-    "classes": [
+    "clases": [
       {
         "id": 1,
         "name": "Programación de Aplicaciones Móviles",
@@ -23,7 +30,7 @@
         "teacher_id": 2
       }
     ],
-    "attendance_records": [
+    "asistencia": [
       {
         "id": 1,
         "class_id": 1,
@@ -31,16 +38,6 @@
         "date": "2025-01-24",
         "time": "10:30",
         "status": "present" 
-      }
-    ],
-    "qr_codes": [
-      {
-        "id": 1,
-        "class_id": 1,
-        "teacher_id": 2,
-        "code": "123456",
-        "created_at": "2025-01-24T10:00:00Z",
-        "expires_at": "2025-01-24T11:00:00Z"
       }
     ]
   }

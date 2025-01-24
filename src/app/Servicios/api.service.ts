@@ -16,6 +16,10 @@ export class APIService {
       .pipe(retry(3));
   }
 
+  logCorreo(username: string): Observable<any> {
+    return this.http.get(this.baseURL + '/users?correo=' + username).pipe(retry(3));
+  }
+
   register(data: any): Observable<any> {
     return this.http.post(this.baseURL + '/users', data).pipe(retry(3));
   }
@@ -28,5 +32,10 @@ export class APIService {
 
   listarUsuarios(): Observable<any> {
     return this.http.get(this.baseURL + '/users').pipe(retry(3));
+  }
+  cambiarPass(username:string, pass:string):Observable<any>{
+    return this.http.get(this.baseURL + 'users?username' + username).pipe(retry(3)),
+    
+
   }
 }

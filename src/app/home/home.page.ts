@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import { AuthService } from '../Servicios/auth.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -25,34 +24,29 @@ export class HomePage {
 
 //Boton conectar con router a Perfil
 
-  conectar() {
-
-    if (this.user.usuario.length > 0 && this.user.password.length > 0) {
-      if (this.auth.loginStorage(this.user.usuario,this.user.password)) {
-
-//spiner de carga simulando delay con MS
-
+conectar() {
+  if (this.user.usuario.length > 0 && this.user.password.length > 0) {
+    this.auth.loginAPI(this.user.usuario, this.user.password).then((res) => {
+      if (res) {
         let navigationExtras: NavigationExtras = {
           state: { user: this.user },
         };
-        this.carga =true;
-        this.msj="Conexion Exitosa"
-        setTimeout(()=>{
-        this.router.navigate(['/perfil'], navigationExtras);
-        this.msj='';
-        this.carga = false;
-      },3000);
-
+        this.carga = true;
+        this.msj = 'Conexion Exitosa';
+        /* setTimeout permite generar un delay en MS */
+        setTimeout(() => {
+          this.router.navigate(['/perfil'], navigationExtras);
+          this.msj = '';
+          this.carga = false;
+        }, 3000);
+      } else {
+        this.msj = 'Credenciales erroneas';
       }
-      else {
-        this.msj = "Credenciales erroneas";
-        this.mostrarBtnRecuperar = true;
-      }
-    } else {
-      this.msj = 'Credenciales no pueden estar vacias';
-      this.mostrarBtnRecuperar = false;
-    }
+    });
+  } else {
+    this.msj = 'Credenciales no pueden estar vacias';
   }
+}
 
   recuperarContrasenia() {
     // Mostrar spinner de carga cuando se haga clic en el botón de recuperar contraseña

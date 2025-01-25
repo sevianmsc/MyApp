@@ -1,44 +1,43 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "username": "sevian",
-        "correo": "sevian@correo.cl",
-        "pass": "1234",
-        "role": "student" 
-      },
-      {
-        "id": 2,
-        "username": "speed",
-        "correo": "speed@correo.cl",
-        "pass": "1234",
-        "role": "student"
-      },
-      {
-        "id": 3,
-        "username": "elprofe",
-        "correo": "profe@correo.cl",
-        "pass": "1234",
-        "role": "teacher"
-      }
-    ],
-    "clases": [
-      {
-        "id": 1,
-        "name": "Programación de Aplicaciones Móviles",
-        "code": "PGY4121",
-        "teacher_id": 2
-      }
-    ],
-    "asistencia": [
-      {
-        "id": 1,
-        "class_id": 1,
-        "student_id": 1,
-        "date": "2025-01-24",
-        "time": "10:30",
-        "status": "present" 
-      }
-    ]
-  }
-  
+  "users": [
+    {
+      "id": "1",
+      "username": "sevian",
+      "correo": "sevian@correo.cl",
+      "pass": "123456",
+      "role": "student"
+    },
+    {
+      "id": "2",
+      "username": "speed",
+      "correo": "speed@correo.cl",
+      "pass": "1234",
+      "role": "student"
+    },
+    {
+      "id": "3",
+      "username": "elprofe",
+      "correo": "profe@correo.cl",
+      "pass": "1234",
+      "role": "teacher"
+    }
+  ],
+  "clases": [
+    {
+      "id": "1",
+      "name": "Programación de Aplicaciones Móviles",
+      "code": "PGY4121",
+      "teacher_id": 2
+    }
+  ],
+  "asistencia": [
+    {
+      "id": "1",
+      "class_id": 1,
+      "student_id": 1,
+      "date": "2025-01-24",
+      "time": "10:30",
+      "status": "present"
+    }
+  ]
+}

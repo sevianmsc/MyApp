@@ -124,4 +124,19 @@ export class AuthService {
   logout() {
     this.storage.removeItem('conectado');
   }
+
+  recuperarContrasena(username: string, nuevaContrasena: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.api.cambiarContrasena(username, nuevaContrasena).subscribe({
+        next: () => {
+          resolve(true);
+        },
+        error: (err) => {
+          console.error(err.message);
+          resolve(false);
+        },
+      });
+    });
+  }
+  
 }

@@ -6,7 +6,7 @@ import { Observable, retry, switchMap } from 'rxjs';
   providedIn: 'root',
 })
 export class APIService {
-  private baseURL = 'http://localhost:3000';
+  private baseURL = 'https://cq7nwvn1-3000.brs.devtunnels.ms/';
   private http: HttpClient = inject(HttpClient);
   constructor() {}
 

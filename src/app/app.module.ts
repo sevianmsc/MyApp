@@ -14,7 +14,12 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
 //agregamos el spinner a los imports
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, MatProgressSpinnerModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot({ //agregar configuracion para aplicativo
+    mode:"md",
+    animated:true,
+    rippleEffect:true,
+    hardwareBackButton:true,
+  }), AppRoutingModule, MatProgressSpinnerModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })

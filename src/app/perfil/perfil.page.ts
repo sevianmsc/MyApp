@@ -24,9 +24,14 @@ export class PerfilPage implements OnInit, AfterViewInit {
   nombreUsuario = '';
 
   ngOnInit() {
-    // Inicializa el usuario desde el estado de la navegación si existe
-    this.user = history.state.user || { usuario: '', password: '' };
-    this.nombreUsuario = this.user.usuario;
+    if (history.state?.user){
+     this.user = history.state.user;
+    this.nombreUsuario = this.user.usuario; 
+    } else{
+      this.generarToast('Sesion Invalida');
+      this.router.navigate(['/home']);
+    }
+    
   }
 
   ngAfterViewInit() {

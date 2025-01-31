@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import { AuthService } from '../Servicios/auth.service';
 import { ToastController } from '@ionic/angular';
+import { BarcodeScanner, BarcodeFormat,LensFacing, } from '@capacitor-mlkit/barcode-scanning';
+
+
 
 @Component({
   selector: 'app-perfil',
@@ -59,6 +62,19 @@ export class PerfilPage implements OnInit, AfterViewInit {
       res.present();
     });
   }
+
+  //--------------------------------------------------------------------------------------
+  //QR
+  scanBarcode = async () => {
+    try {
+      const result = await BarcodeScanner.scan();
+      console.log('Código escaneado:', result.barcodes);
+    } catch (error) {
+      console.error('Error al escanear:', error);
+    }
+  };
+
+  //-------------------------------------------------------------------------------------------
 
   animacionAutito() {
     const autito = document.querySelector('#autito') as HTMLElement;

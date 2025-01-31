@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, retry, switchMap } from 'rxjs';
 
@@ -6,9 +6,16 @@ import { Observable, retry, switchMap } from 'rxjs';
   providedIn: 'root',
 })
 export class APIService {
-  private baseURL = 'https://cq7nwvn1-3000.brs.devtunnels.ms/';
+  private baseURL = 'http://localhost:3000';
   private http: HttpClient = inject(HttpClient);
   constructor() {}
+
+  httpOptions = {
+    headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin':'*'
+    })
+    }
 
   login(username: string): Observable<any> {
     return this.http

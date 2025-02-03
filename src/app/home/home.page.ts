@@ -26,6 +26,30 @@ export class HomePage {
 
 conectar() {
   if (this.user.usuario.length > 0 && this.user.password.length > 0) {
+    // Simulación de validación de credenciales
+    if (this.user.usuario === 'sevian' && this.user.password === '1234') {
+      let navigationExtras: NavigationExtras = {
+        state: { user: this.user },
+      };
+      this.carga = true;
+      this.msj = 'Conexión Exitosa';
+      /* setTimeout permite generar un delay en MS */
+      setTimeout(() => {
+        this.router.navigate(['/perfil'], navigationExtras);
+        this.msj = '';
+        this.carga = false;
+      }, 3000);
+    } else {
+      this.msj = 'Credenciales erróneas';
+    }
+  } else {
+    this.msj = 'Credenciales no pueden estar vacías';
+  }
+}
+
+/*
+conectar() {
+  if (this.user.usuario.length > 0 && this.user.password.length > 0) {
     this.auth.loginAPI(this.user.usuario, this.user.password).then((res) => {
       if (res) {
         let navigationExtras: NavigationExtras = {
@@ -33,7 +57,7 @@ conectar() {
         };
         this.carga = true;
         this.msj = 'Conexion Exitosa';
-        /* setTimeout permite generar un delay en MS */
+       
         setTimeout(() => {
           this.router.navigate(['/perfil'], navigationExtras);
           this.msj = '';
@@ -47,7 +71,7 @@ conectar() {
     this.msj = 'Credenciales no pueden estar vacias';
   }
 }
-
+*/
   recuperarContrasenia() {
     // Mostrar spinner de carga cuando se haga clic en el botón de recuperar contraseña
     this.carga = true;

@@ -7,6 +7,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router: Router = new Router();
   const toastController: ToastController = new ToastController();
 
+  
   if (auth.isConnected()) {
     return true;
   } else {

@@ -63,18 +63,11 @@ export class PerfilPage implements OnInit, AfterViewInit {
     });
   }
 
-  //--------------------------------------------------------------------------------------
-  //QR
-  scanBarcode = async () => {
-    try {
-      const result = await BarcodeScanner.scan();
-      console.log('Código escaneado:', result.barcodes);
-    } catch (error) {
-      console.error('Error al escanear:', error);
-    }
-  };
+  
+  qrpage(){
+    this.router.navigate(['/qr'])
+  }
 
-  //-------------------------------------------------------------------------------------------
 
   animacionAutito() {
     const autito = document.querySelector('#autito') as HTMLElement;

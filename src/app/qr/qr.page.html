@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>qr</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">qr</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div id="container">
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>QR RegistrApp</ion-card-title>
+  </ion-card-header>
+  <ion-button (click)="startScan()" size="Small" shape="round" id="qrscan">
+    Escanear
+  </ion-button>
+  <ion-button (click)="stopScan()" size="Small" shape="round" id="qrscan">
+    Detener
+  </ion-button>
+  <div *ngIf="qrResultString">
+    <h2>Resultado:</h2>
+    <p>{{ qrResultString }}</p>
+  </div>
+</ion-card>
+  </div>
+</ion-content>

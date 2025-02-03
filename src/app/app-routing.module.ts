@@ -31,6 +31,10 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'qr',
+    loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule)
+  },
+  {
     path: 'error',
     loadChildren: () =>
       import('./error/error.module').then((m) => m.ErrorPageModule),
@@ -39,6 +43,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'error',
   },
+
 
 ];
 

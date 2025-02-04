@@ -37,6 +37,10 @@ export class APIService {
       .pipe(retry(3));
   }
 
+  listarClases(): Observable<any> { // Método para obtener las clases
+    return this.http.get(this.baseURL + '/clases').pipe(retry(3)); // Ajusta la ruta '/clases' si es diferente
+  }
+
   listarUsuarios(): Observable<any> {
     return this.http.get(this.baseURL + '/users').pipe(retry(3));
   }

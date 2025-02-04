@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>ramos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div id="container">
+
+  <ion-card>
+    <ion-list>
+      <ion-item *ngFor="let clase of clases">
+      <h3>{{ clase.name }}</h3>
+      </ion-item>
+      <ion-item *ngFor="let clase of clases">
+       <p>Código: {{ clase.code }}</p> 
+      </ion-item>
+      <ion-item *ngFor="let clase of clases">
+       <p>Profesor: {{ obtenerNombreProfesor(clase.teacher_id) }}</p> 
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</div>

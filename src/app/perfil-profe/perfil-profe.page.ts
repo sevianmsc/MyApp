@@ -4,27 +4,32 @@ import { AnimationController } from '@ionic/angular';
 import { AuthService } from '../Servicios/auth.service';
 import { ToastController } from '@ionic/angular';
 import { BarcodeScanner, BarcodeFormat,LensFacing, } from '@capacitor-mlkit/barcode-scanning';
+import { APIService } from '../Servicios/api.service';
 
 
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-perfil-profe',
+  templateUrl: './perfil-profe.page.html',
+  styleUrls: ['./perfil-profe.page.scss'],
   standalone: false,
 })
-export class PerfilPage implements OnInit, AfterViewInit {
+export class PerfilProfePage implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private animation: AnimationController,
     private auth: AuthService,
-    private toast: ToastController
+    private toast: ToastController,
+    private apiService: APIService
   ) {}
   user = {
     usuario: '',
     password: '',
   };
   nombreUsuario = '';
+
+  usuariosStudent: any[] = [];
+  
 
   ngOnInit() {
     if (history.state?.user){
@@ -34,15 +39,19 @@ export class PerfilPage implements OnInit, AfterViewInit {
       this.generarToast('Sesion Invalida');
       this.router.navigate(['/home']);
     }
-    
+    this.cargarUsuariosStudent();
+  }
+
+  cargarUsuariosStudent() {
+    this.router.navigate(['/vista-usuarios'])
+  }
+
+  mostrarUsuarios(){
+    console.log("this.usuariosStudent",this.usuariosStudent)
   }
 
   ngAfterViewInit() {
     this.animacionAutito(); // Llama la animación después de que los elementos estén disponibles
-  }
-
-  infoRamos(){
-    this.router.navigate(['/ramos'])
   }
 
   recuperarContrasenia() {

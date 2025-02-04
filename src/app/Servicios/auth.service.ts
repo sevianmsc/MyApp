@@ -10,6 +10,7 @@ export class AuthService {
   private static isLogged: boolean = false;
   private storage: LocalStorageService = new LocalStorageService();
   private api: APIService = new APIService();
+
   constructor() {}
 
   login(user: string, pass: string): boolean {
@@ -25,21 +26,17 @@ export class AuthService {
   }
 
   loginStorage(user: string, pass: string): boolean {
-    //Obtenemos la lista de usuarios
     const listaUsuarios = this.storage.getItem('users') || [];
-    //Filtramos la lista segun su usuario/correo y su contraseña
-    //Si encuentra retorna un objeto usuario , sino , null
     const conectado = listaUsuarios.find(
       (userFind: any) =>
         (userFind.username == user || userFind.correo == user) &&
         userFind.pass == pass
     );
-    //Si conectado tiene valor , las credenciales fueron validas
-    //EN caso contrario , se le niega el acceso
 
     if (conectado) {
-      //Guardamos el usuario encontrado en el almacenamiento local
+      // Guardamos el usuario encontrado y su rol en localStorage
       this.storage.setItem('conectado', conectado);
+      this.storage.setItem('role', conectado.role); // Guardar el rol
       return true;
     } else {
       return false;
@@ -55,22 +52,21 @@ export class AuthService {
             res[0].pass == pass
           ) {
             this.storage.setItem('conectado', JSON.stringify(res[0]));
+            this.storage.setItem('role', res[0].role); // Guardar el rol
             resolve(true);
           } else {
             resolve(false);
-            console.log('Credenciales no validas');
+            console.log('Credenciales no válidas');
           }
         } else {
-          console.log('Llamada vacia');
+          console.log('Llamada vacía');
         }
       });
     });
   }
 
   registrar(user: string, correo: string, pass: string) {
-    //Recuperamos la lista de usuarios
     const listaUsuarios = this.storage.getItem('users') || [];
-    //Comparamos usuario y correo para validar que no existan en el registro de usuarios
     if (
       listaUsuarios.find(
         (userFind: any) =>
@@ -79,20 +75,17 @@ export class AuthService {
     ) {
       return false;
     }
-    //Creamos una nueva entidad de usuario
     const nuevoUsuario = {
       id: listaUsuarios.length + 1,
       username: user,
       correo: correo,
       pass: pass,
     };
-    //Agregamos a la lista
     listaUsuarios.push(nuevoUsuario);
-    //Devolvemos el registro de usuarios a su lugar
     this.storage.setItem('users', listaUsuarios);
     return true;
   }
-  /*  */
+
   async registerAPI(
     user: string,
     correo: string,
@@ -121,8 +114,17 @@ export class AuthService {
     return this.storage.getItem('conectado') !== null;
   }
 
+  getUserRole(): string | null {
+    return this.storage.getItem('role'); // Obtener el rol del usuario
+  }
+
+  isAuthenticated(): boolean {
+    return this.isConnected(); // Verifica si hay sesión activa
+  }
+
   logout() {
     this.storage.removeItem('conectado');
+    this.storage.removeItem('role');
   }
 
   recuperarContrasena(username: string, nuevaContrasena: string): Promise<boolean> {
@@ -138,5 +140,4 @@ export class AuthService {
       });
     });
   }
-  
 }

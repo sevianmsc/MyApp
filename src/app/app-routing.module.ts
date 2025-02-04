@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () =>
       import('./perfil/perfil.module').then((m) => m.PerfilPageModule),
-   // canActivate: [authGuard],
+      canActivate: [authGuard],
   },
   {
     path: 'recuperar-contrasenia',
@@ -35,6 +35,22 @@ const routes: Routes = [
     loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule)
   },
   {
+    path: 'perfil-profe',
+    loadChildren: () => import('./perfil-profe/perfil-profe.module').then( m => m.PerfilProfePageModule),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'vista-usuarios',
+    loadChildren: () => import('./vista-usuarios/vista-usuarios.module').then( m => m.VistaUsuariosPageModule),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'ramos',
+    loadChildren: () => import('./ramos/ramos.module').then( m => m.RamosPageModule),
+    canActivate: [authGuard],
+  },
+
+  {
     path: 'error',
     loadChildren: () =>
       import('./error/error.module').then((m) => m.ErrorPageModule),
@@ -43,6 +59,10 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'error',
   },
+
+
+
+
 
 
 ];

@@ -1,25 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/perfil" icon="person-circle-outline" text="Perfil"></ion-back-button>
     </ion-buttons>
-    <ion-title>ramos</ion-title>
+    <ion-title>Ramos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<div id="container">
+<ion-content [fullscreen]="true">
+  <div id="container" style="padding-top: 50%;">
+    <ion-card *ngFor="let clase of clases" class="ramos-card">
+      <ion-card-header>
+        <ion-card-title>{{ clase.name }}</ion-card-title>
+        <ion-card-subtitle>Código: {{ clase.code }}</ion-card-subtitle>
+      </ion-card-header>
 
-  <ion-card>
-    <ion-list>
-      <ion-item *ngFor="let clase of clases">
-      <h3>{{ clase.name }}</h3>
-      </ion-item>
-      <ion-item *ngFor="let clase of clases">
-       <p>Código: {{ clase.code }}</p> 
-      </ion-item>
-      <ion-item *ngFor="let clase of clases">
-       <p>Profesor: {{ obtenerNombreProfesor(clase.teacher_id) }}</p> 
-      </ion-item>
-    </ion-list>
-  </ion-card>
-</div>
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            <ion-label>
+              <strong>Profesor:</strong> {{ obtenerNombreProfesor(clase.teacher_id) }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="time-outline"></ion-icon>
+            <ion-label>
+              <strong>Horario:</strong> {{ clase.schedule }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="layers-outline"></ion-icon>
+            <ion-label>
+              <strong>Sección:</strong> {{ clase.section }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="home-outline"></ion-icon>
+            <ion-label>
+              <strong>Sala:</strong> {{ clase.room }}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

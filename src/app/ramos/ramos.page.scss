@@ -1,0 +1,61 @@
+#container {
+  padding: 16px;
+}
+
+.ramos-card {
+  margin-bottom: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+ion-card-title {
+  font-size: 1.3em;
+  color: #003366;
+}
+
+ion-card-subtitle {
+  font-size: 0.95em;
+  color: #666;
+}
+
+ion-item {
+  --background: #f9f9f9;
+  --inner-padding-end: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+ion-label {
+  font-size: 0.95em;
+}
+#container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ramos-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+ion-card-title {
+  font-size: 1.3em;
+  color: #003366;
+}
+
+ion-card-subtitle {
+  font-size: 0.95em;
+  color: #666;
+}
+
+ion-item {
+  --background: #f9f9f9;
+  --inner-padding-end: 0;
+}
+
+ion-icon {
+  color: #3880ff;
+  font-size: 20px;
+  margin-right: 8px;
+}

@@ -36,7 +36,10 @@ export class AuthService {
     if (conectado) {
       // Guardamos el usuario encontrado y su rol en localStorage
       this.storage.setItem('conectado', conectado);
-      this.storage.setItem('role', conectado.role); // Guardar el rol
+     // this.storage.setItem('role', conectado.role); // original
+     console.log('Datos usuario al loguearse:', conectado);
+  this.storage.setItem('role', JSON.stringify(conectado.rol));
+
       return true;
     } else {
       return false;
@@ -52,7 +55,8 @@ export class AuthService {
             res[0].pass == pass
           ) {
             this.storage.setItem('conectado', JSON.stringify(res[0]));
-            this.storage.setItem('role', res[0].role); // Guardar el rol
+            const rol = res[0].rol || res[0].role;
+this.storage.setItem('role', rol ?? 'desconocido'); // Guardar el rol
             resolve(true);
           } else {
             resolve(false);
@@ -65,7 +69,7 @@ export class AuthService {
     });
   }
 
-  registrar(user: string, correo: string, pass: string) {
+  registrar(user: string, correo: string, pass: string, role: string) {
     const listaUsuarios = this.storage.getItem('users') || [];
     if (
       listaUsuarios.find(
@@ -80,6 +84,7 @@ export class AuthService {
       username: user,
       correo: correo,
       pass: pass,
+      rol: role, 
     };
     listaUsuarios.push(nuevoUsuario);
     this.storage.setItem('users', listaUsuarios);
@@ -89,7 +94,8 @@ export class AuthService {
   async registerAPI(
     user: string,
     correo: string,
-    pass: string
+    pass: string,
+    role: string
   ): Promise<boolean> {
     const users = await firstValueFrom(this.api.listarUsuarios());
     const exists =
@@ -104,6 +110,7 @@ export class AuthService {
       username: user,
       correo: correo,
       pass: pass,
+      rol: role,
     };
     await this.api.register(nuevoUsuario).subscribe();
 

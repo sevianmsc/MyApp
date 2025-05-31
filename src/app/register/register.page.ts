@@ -20,6 +20,7 @@ export class RegisterPage implements OnInit {
     usuario: '',
     correo: '',
     password: 'pass1234',
+    rol: 'student', // valor por defecto
   };
   ngOnInit() {}
 
@@ -28,11 +29,11 @@ export class RegisterPage implements OnInit {
     if (
       this.user.usuario.trim().length > 0 ||
       this.user.password.trim().length > 0 ||
-      this.user.correo.trim().length > 0
+      this.user.correo.trim().length > 0 
     ) {
       //Verificar si el registro se realizo
       this.auth
-        .registerAPI(this.user.usuario, this.user.correo, this.user.password)
+        .registerAPI(this.user.usuario, this.user.correo, this.user.password, this.user.rol)
         .then((res) => {
           if (res) {
             this.generarToast('Registro Exitoso \n Redireccionando');

@@ -7,7 +7,7 @@ import { AuthService } from '../Servicios/auth.service';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  standalone:false,
+  standalone: false,
 })
 export class HomePage {
   user = {
@@ -22,33 +22,51 @@ export class HomePage {
 
   async conectar() {
     if (this.user.usuario.length > 0 && this.user.password.length > 0) {
-      this.carga = true; // Mostrar la carga inmediatamente
-      this.msj = 'Conectando...'; // Mensaje más apropiado
+      this.carga = true;
+      this.msj = 'Conectando...';
 
+      console.log('HomePage: Iniciando proceso de login...');
       const success = await this.auth.loginAPI(this.user.usuario, this.user.password);
+      
       if (success) {
+        console.log('HomePage: Login exitoso, procesando navegación...');
         this.msj = 'Conexión Exitosa';
         
-
         setTimeout(() => {
-          const user = JSON.parse(localStorage.getItem('conectado') || '{}'); // Valor por defecto '{}'
-          const role = this.auth.getUserRole(); // Obtener el rol *después* de la conexión exitosa
-  
-          if (role === 'student') {
-            this.router.navigate(['/perfil'], { replaceUrl: true });
-          } else if (role === 'teacher') {
-            this.router.navigate(['/perfil-profe'], { replaceUrl: true });
+          // Verificar que el usuario esté realmente autenticado
+          const isAuthenticated = this.auth.isAuthenticated();
+          const role = this.auth.getUserRole();
+          
+          console.log('HomePage: ¿Usuario autenticado?', isAuthenticated);
+          console.log('HomePage: Rol del usuario:', role);
+
+          if (isAuthenticated && role) {
+            if (role === 'student') {
+              console.log('HomePage: Navegando a perfil de estudiante...');
+              this.router.navigate(['/perfil'], { replaceUrl: true });
+            } else if (role === 'teacher') {
+              console.log('HomePage: Navegando a perfil de profesor...');
+              this.router.navigate(['/perfil-profe'], { replaceUrl: true });
+            } else {
+              console.error('HomePage: Rol desconocido:', role);
+              this.router.navigate(['/error'], { replaceUrl: true });
+            }
           } else {
-            this.router.navigate(['/error'], { replaceUrl: true });
-            console.error("Rol desconocido:", role);
+            console.error('HomePage: Usuario no autenticado después del login exitoso');
+            console.error('HomePage: isAuthenticated:', isAuthenticated);
+            console.error('HomePage: role:', role);
+            this.msj = 'Error en la autenticación';
+            this.carga = false;
+            return; // Salir temprano para no limpiar msj y carga
           }
-  
+
           this.msj = '';
           this.carga = false;
-        }, 2000);
+        }, 1000); // Reducido a 1 segundo ya que el retry ya maneja el timing
       } else {
+        console.log('HomePage: Login falló');
         this.msj = 'Credenciales erróneas';
-        this.carga = false; // Ocultar la carga en caso de error
+        this.carga = false;
       }
     } else {
       this.msj = 'Credenciales no pueden estar vacías';
@@ -66,11 +84,11 @@ export class HomePage {
     }, 2000);
   }
 
-  ngAfterContentInit(){
+  ngAfterContentInit() {
     this.animacionLogin();
   }
 
-  animacionLogin(){
+  animacionLogin() {
     const imagen = document.querySelector('#container ion-card ion-card-header ion-img') as HTMLElement;
     const fondo = document.querySelector('#logoDuoc') as HTMLElement;
 

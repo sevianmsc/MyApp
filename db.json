@@ -20,6 +20,19 @@
       "correo": "profe@correo.cl",
       "pass": "1234",
       "role": "teacher"
+    },
+    {
+      "id": 4,
+      "username": "shauty",
+      "correo": "shauty01@correo.cl",
+      "pass": "12345"
+    },
+    {
+      "id": "7ba0",
+      "username": "lol123",
+      "correo": "lol123@correo.cl",
+      "pass": "12345",
+      "role": "student"
     }
   ],
   "clases": [

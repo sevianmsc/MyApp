@@ -27,6 +27,9 @@ export class PerfilPage implements OnInit, AfterViewInit {
   nombreUsuario = '';
 
   ngOnInit() {
+    console.log('PerfilPage: Página cargada');
+  console.log('PerfilPage: ¿Usuario autenticado?', this.auth.isAuthenticated());
+  console.log('PerfilPage: Rol del usuario:', this.auth.getUserRole());
     if (history.state?.user){
      this.user = history.state.user;
     this.nombreUsuario = this.user.usuario; 

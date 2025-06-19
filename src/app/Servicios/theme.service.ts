@@ -1,5 +1,5 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import { LocalStorageService } from './local-storage.service'; // Importa tu servicio de localStorage
+import { LocalStorageService } from './local-storage.service'; 
 
 @Injectable({
   providedIn: 'root'
@@ -10,25 +10,23 @@ export class ThemeService {
 
   constructor(
     rendererFactory: RendererFactory2,
-    private localStorageService: LocalStorageService // Inyecta tu servicio de localStorage
+    private localStorageService: LocalStorageService 
   ) {
     this.renderer = rendererFactory.createRenderer(null, null);
-    this.loadTheme(); // Cargar el tema al inicializar el servicio
+    this.loadTheme(); 
   }
 
-  /**
-   * Carga el tema guardado en localStorage o detecta la preferencia del sistema.
-   */
+ 
   private loadTheme() {
-    // getItem ya se encarga de JSON.parse, así que obtendremos true, false o null directamente
+    
     const savedTheme: boolean | null = this.localStorageService.getItem(this.DARK_MODE_KEY);
 
-    if (savedTheme === true) { // Si se guardó explícitamente como true
+    if (savedTheme === true) {
       this.enableDarkMode(true);
-    } else if (savedTheme === false) { // Si se guardó explícitamente como false
+    } else if (savedTheme === false) {
       this.enableDarkMode(false);
     } else {
-      // Si no hay preferencia guardada, verificar la preferencia del sistema operativo
+      
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       this.enableDarkMode(prefersDark);
     }
@@ -41,10 +39,10 @@ export class ThemeService {
   enableDarkMode(enable: boolean) {
     if (enable) {
       this.renderer.addClass(document.body, 'dark-theme');
-      this.localStorageService.setItem(this.DARK_MODE_KEY, true); // Guardamos el booleano directamente
+      this.localStorageService.setItem(this.DARK_MODE_KEY, true);
     } else {
       this.renderer.removeClass(document.body, 'dark-theme');
-      this.localStorageService.setItem(this.DARK_MODE_KEY, false); // Guardamos el booleano directamente
+      this.localStorageService.setItem(this.DARK_MODE_KEY, false);
     }
   }
 
@@ -56,9 +54,7 @@ export class ThemeService {
     return document.body.classList.contains('dark-theme');
   }
 
-  /**
-   * Alterna el modo oscuro.
-   */
+ 
   toggleDarkMode() {
     const currentMode = this.isDarkModeEnabled();
     this.enableDarkMode(!currentMode);

@@ -2,8 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimationController, ToastController } from '@ionic/angular'; // Asegúrate de que ToastController esté aquí
 import { AuthService } from '../Servicios/auth.service';
-// No necesitamos BarcodeScanner aquí si no se usa directamente en este componente
-// import { BarcodeScanner, BarcodeFormat, LensFacing, } from '@capacitor-mlkit/barcode-scanning';
+
+import { BarcodeScanner, BarcodeFormat, LensFacing, } from '@capacitor-mlkit/barcode-scanning';
 import { APIService } from '../Servicios/api.service';
 import { ThemeService } from '../Servicios/theme.service'; // <--- Importamos el ThemeService
 
@@ -21,7 +21,7 @@ export class PerfilProfePage implements OnInit, AfterViewInit {
     private auth: AuthService,
     private toast: ToastController,
     private apiService: APIService,
-    private themeService: ThemeService // <--- Inyectamos el ThemeService
+    private themeService: ThemeService 
   ) {}
 
   user = {
@@ -31,7 +31,7 @@ export class PerfilProfePage implements OnInit, AfterViewInit {
   nombreUsuario = '';
 
   usuariosStudent: any[] = [];
-  isDarkMode: boolean = false; // <--- Variable para controlar el ion-toggle del modo oscuro
+  isDarkMode: boolean = false;
 
   ngOnInit() {
     if (history.state?.user){
@@ -43,7 +43,7 @@ export class PerfilProfePage implements OnInit, AfterViewInit {
     }
     this.cargarUsuariosStudent();
 
-    // <--- Inicializamos el estado del ion-toggle con el tema actual
+  
     this.isDarkMode = this.themeService.isDarkModeEnabled();
   }
 
@@ -56,13 +56,13 @@ export class PerfilProfePage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.animacionAutito(); // Llama la animación después de que los elementos estén disponibles
+    this.animacionAutito();
   }
 
   // <--- Nuevo método para alternar el tema
   toggleTheme(event: any) {
     this.themeService.enableDarkMode(event.detail.checked);
-    this.isDarkMode = event.detail.checked; // Actualiza la variable para reflejar el cambio en la UI
+    this.isDarkMode = event.detail.checked;
   }
 
   recuperarContrasenia() {

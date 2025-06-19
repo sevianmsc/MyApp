@@ -1,10 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AnimationController, ToastController } from '@ionic/angular'; // Asegúrate de importar ToastController si no lo está
+import { AnimationController, ToastController } from '@ionic/angular';
 import { AuthService } from '../Servicios/auth.service';
-import { ThemeService } from '../Servicios/theme.service'; // <--- Importamos el ThemeService
+import { ThemeService } from '../Servicios/theme.service';
 
-// No necesitamos BarcodeScanner aquí, si lo usas en otro lado está bien.
 // import { BarcodeScanner, BarcodeFormat, LensFacing, } from '@capacitor-mlkit/barcode-scanning';
 
 @Component({
@@ -19,17 +18,16 @@ export class PerfilPage implements OnInit, AfterViewInit {
     private animation: AnimationController,
     private auth: AuthService,
     private toast: ToastController,
-    private themeService: ThemeService // <--- Inyectamos el ThemeService
+    private themeService: ThemeService 
   ) {}
 
   user = {
     usuario: '',
     password: '',
-    // Puedes añadir otras propiedades del usuario aquí, como 'nombre', 'tipo', etc.
-    // si las manejas en tu AuthService o en la data que recibes.
+    
   };
   nombreUsuario = '';
-  isDarkMode: boolean = false; // <--- Variable para controlar el ion-toggle del modo oscuro
+  isDarkMode: boolean = false;
 
   ngOnInit() {
     console.log('PerfilPage: Página cargada');
@@ -44,18 +42,18 @@ export class PerfilPage implements OnInit, AfterViewInit {
       this.router.navigate(['/home']);
     }
 
-    // <--- Inicializamos el estado del ion-toggle con el tema actual
+  
     this.isDarkMode = this.themeService.isDarkModeEnabled();
   }
 
   ngAfterViewInit() {
-    this.animacionAutito(); // Llama la animación después de que los elementos estén disponibles
+    this.animacionAutito();
   }
 
-  // <--- Nuevo método para alternar el tema
+  
   toggleTheme(event: any) {
     this.themeService.enableDarkMode(event.detail.checked);
-    this.isDarkMode = event.detail.checked; // Actualiza la variable para reflejar el cambio en la UI
+    this.isDarkMode = event.detail.checked; 
   }
 
   infoRamos() {

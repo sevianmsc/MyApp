@@ -1,7 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Perfil de Usuario</ion-title>
-    <ion-button slot="end" fill="outline" size="small" id="btnOutlog" (click)="logout()">
+    <ion-title>Perfil de Profesor</ion-title> <ion-button slot="end" fill="outline" size="small" id="btnOutlog" (click)="logout()">
       <ion-icon name="log-out-outline" ></ion-icon>     
     </ion-button>
   </ion-toolbar>
@@ -10,28 +9,33 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Perfil de Usuario</ion-title>
-    </ion-toolbar>
-    
+      <ion-title size="large">Perfil de Profesor</ion-title> </ion-toolbar>
   </ion-header>
   <div id="container">
     <ion-card>
       <ion-img src="assets/img/bojji-access.jpg" id="logoLogin"></ion-img>
       <ion-card-title>Bienvenido, {{nombreUsuario}}</ion-card-title>
-      <ion-card-subtitle>¿Que quieres hacer hoy?</ion-card-subtitle>
-      <ion-button  shape="round" size="Small" id="btnRecuperar" (click)="recuperarContrasenia()">
+      <ion-card-subtitle>¿Qué quieres hacer hoy?</ion-card-subtitle>
+
+      <ion-item class="ion-no-padding"> <ion-label>Modo Oscuro</ion-label>
+        <ion-toggle 
+          slot="end" 
+          [checked]="isDarkMode" 
+          (ionChange)="toggleTheme($event)"
+        ></ion-toggle>
+      </ion-item>
+      <ion-button shape="round" size="Small" id="btnRecuperar" (click)="recuperarContrasenia()">
         Recuperar Contraseña
       </ion-button>
       <ion-button (click)="logout()" size="Small" shape="round" id="btnCerrarSesion">
-        Cerrar Sesion
+        Cerrar Sesión
       </ion-button>
       <div></div>
       <ion-button (click)="qrpage()" size="Small" shape="round" id="btnQR">
         QR
       </ion-button>
       <div></div>
-      <ion-button (click)="cargarUsuariosStudent()" size="Small" shape="round" id="btnQR">
-        Ver Alumnos
+      <ion-button (click)="cargarUsuariosStudent()" size="Small" shape="round" id="btnVerAlumnos"> Ver Alumnos
       </ion-button>
     </ion-card>
     <ion-img src="assets/img/auto.png" id="autito"></ion-img>

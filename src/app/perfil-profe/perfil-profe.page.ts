@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AnimationController } from '@ionic/angular';
+import { AnimationController, ToastController } from '@ionic/angular'; // Asegúrate de que ToastController esté aquí
 import { AuthService } from '../Servicios/auth.service';
-import { ToastController } from '@ionic/angular';
-import { BarcodeScanner, BarcodeFormat,LensFacing, } from '@capacitor-mlkit/barcode-scanning';
+// No necesitamos BarcodeScanner aquí si no se usa directamente en este componente
+// import { BarcodeScanner, BarcodeFormat, LensFacing, } from '@capacitor-mlkit/barcode-scanning';
 import { APIService } from '../Servicios/api.service';
-
+import { ThemeService } from '../Servicios/theme.service'; // <--- Importamos el ThemeService
 
 
 @Component({
@@ -20,8 +20,10 @@ export class PerfilProfePage implements OnInit, AfterViewInit {
     private animation: AnimationController,
     private auth: AuthService,
     private toast: ToastController,
-    private apiService: APIService
+    private apiService: APIService,
+    private themeService: ThemeService // <--- Inyectamos el ThemeService
   ) {}
+
   user = {
     usuario: '',
     password: '',
@@ -29,17 +31,20 @@ export class PerfilProfePage implements OnInit, AfterViewInit {
   nombreUsuario = '';
 
   usuariosStudent: any[] = [];
-  
+  isDarkMode: boolean = false; // <--- Variable para controlar el ion-toggle del modo oscuro
 
   ngOnInit() {
     if (history.state?.user){
-     this.user = history.state.user;
-    this.nombreUsuario = this.user.usuario; 
-    } else{
-      this.generarToast('Sesion Invalida');
+      this.user = history.state.user;
+      this.nombreUsuario = this.user.usuario;
+    } else {
+      this.generarToast('Sesión Inválida');
       this.router.navigate(['/home']);
     }
     this.cargarUsuariosStudent();
+
+    // <--- Inicializamos el estado del ion-toggle con el tema actual
+    this.isDarkMode = this.themeService.isDarkModeEnabled();
   }
 
   cargarUsuariosStudent() {
@@ -52,6 +57,12 @@ export class PerfilProfePage implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.animacionAutito(); // Llama la animación después de que los elementos estén disponibles
+  }
+
+  // <--- Nuevo método para alternar el tema
+  toggleTheme(event: any) {
+    this.themeService.enableDarkMode(event.detail.checked);
+    this.isDarkMode = event.detail.checked; // Actualiza la variable para reflejar el cambio en la UI
   }
 
   recuperarContrasenia() {
@@ -76,7 +87,7 @@ export class PerfilProfePage implements OnInit, AfterViewInit {
     });
   }
 
-  
+
   qrpage(){
     this.router.navigate(['/qr'])
   }

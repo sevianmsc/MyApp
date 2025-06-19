@@ -37,3 +37,30 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 @import "theme/variables.scss";
 @import "@angular/material/prebuilt-themes/rose-red.css";
+/* Variables por defecto (modo claro) */
+:root {
+  --ion-color-primary: #3880ff;
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3171e0;
+  --ion-color-primary-tint: #4c8aff;
+
+  // ... define tus otros colores si es necesario
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
+}
+
+/* Modo oscuro */
+body.dark-theme {
+  --ion-color-primary: #4c8aff;
+  --ion-color-primary-rgb: 76, 138, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #437be0;
+  --ion-color-primary-tint: #5da0ff;
+
+  // ... define tus otros colores para el modo oscuro
+  --ion-background-color: #121212;
+  --ion-text-color: #ffffff;
+}

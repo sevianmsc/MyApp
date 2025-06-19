@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AnimationController } from '@ionic/angular';
+import { AnimationController, ToastController } from '@ionic/angular'; // Asegúrate de importar ToastController si no lo está
 import { AuthService } from '../Servicios/auth.service';
-import { ToastController } from '@ionic/angular';
-import { BarcodeScanner, BarcodeFormat,LensFacing, } from '@capacitor-mlkit/barcode-scanning';
+import { ThemeService } from '../Servicios/theme.service'; // <--- Importamos el ThemeService
 
-
+// No necesitamos BarcodeScanner aquí, si lo usas en otro lado está bien.
+// import { BarcodeScanner, BarcodeFormat, LensFacing, } from '@capacitor-mlkit/barcode-scanning';
 
 @Component({
   selector: 'app-perfil',
@@ -18,34 +18,48 @@ export class PerfilPage implements OnInit, AfterViewInit {
     private router: Router,
     private animation: AnimationController,
     private auth: AuthService,
-    private toast: ToastController
+    private toast: ToastController,
+    private themeService: ThemeService // <--- Inyectamos el ThemeService
   ) {}
+
   user = {
     usuario: '',
     password: '',
+    // Puedes añadir otras propiedades del usuario aquí, como 'nombre', 'tipo', etc.
+    // si las manejas en tu AuthService o en la data que recibes.
   };
   nombreUsuario = '';
+  isDarkMode: boolean = false; // <--- Variable para controlar el ion-toggle del modo oscuro
 
   ngOnInit() {
     console.log('PerfilPage: Página cargada');
-  console.log('PerfilPage: ¿Usuario autenticado?', this.auth.isAuthenticated());
-  console.log('PerfilPage: Rol del usuario:', this.auth.getUserRole());
-    if (history.state?.user){
-     this.user = history.state.user;
-    this.nombreUsuario = this.user.usuario; 
-    } else{
-      this.generarToast('Sesion Invalida');
+    console.log('PerfilPage: ¿Usuario autenticado?', this.auth.isAuthenticated());
+    console.log('PerfilPage: Rol del usuario:', this.auth.getUserRole());
+
+    if (history.state?.user) {
+      this.user = history.state.user;
+      this.nombreUsuario = this.user.usuario;
+    } else {
+      this.generarToast('Sesión Inválida');
       this.router.navigate(['/home']);
     }
-    
+
+    // <--- Inicializamos el estado del ion-toggle con el tema actual
+    this.isDarkMode = this.themeService.isDarkModeEnabled();
   }
 
   ngAfterViewInit() {
     this.animacionAutito(); // Llama la animación después de que los elementos estén disponibles
   }
 
-  infoRamos(){
-    this.router.navigate(['/ramos'])
+  // <--- Nuevo método para alternar el tema
+  toggleTheme(event: any) {
+    this.themeService.enableDarkMode(event.detail.checked);
+    this.isDarkMode = event.detail.checked; // Actualiza la variable para reflejar el cambio en la UI
+  }
+
+  infoRamos() {
+    this.router.navigate(['/ramos']);
   }
 
   recuperarContrasenia() {
@@ -70,11 +84,9 @@ export class PerfilPage implements OnInit, AfterViewInit {
     });
   }
 
-  
-  qrpage(){
-    this.router.navigate(['/qr'])
+  qrpage() {
+    this.router.navigate(['/qr']);
   }
-
 
   animacionAutito() {
     const autito = document.querySelector('#autito') as HTMLElement;

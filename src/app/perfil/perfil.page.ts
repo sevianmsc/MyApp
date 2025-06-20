@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import { AuthService } from '../Servicios/auth.service';
 import { ToastController } from '@ionic/angular';
+import { IonDatetime } from '@ionic/angular/standalone';
 import { BarcodeScanner, BarcodeFormat,LensFacing, } from '@capacitor-mlkit/barcode-scanning';
 
 
@@ -12,6 +13,7 @@ import { BarcodeScanner, BarcodeFormat,LensFacing, } from '@capacitor-mlkit/barc
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
   standalone: false,
+
 })
 export class PerfilPage implements OnInit, AfterViewInit {
   constructor(

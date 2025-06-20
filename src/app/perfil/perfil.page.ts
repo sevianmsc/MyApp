@@ -1,8 +1,11 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AnimationController, ToastController } from '@ionic/angular';
+import { AnimationController} from '@ionic/angular';
 import { AuthService } from '../Servicios/auth.service';
+import { ToastController } from '@ionic/angular';
+import { IonDatetime } from '@ionic/angular/standalone';
 import { ThemeService } from '../Servicios/theme.service';
+import { BarcodeScanner, BarcodeFormat,LensFacing, } from '@capacitor-mlkit/barcode-scanning';
 
 // import { BarcodeScanner, BarcodeFormat, LensFacing, } from '@capacitor-mlkit/barcode-scanning';
 
@@ -11,6 +14,7 @@ import { ThemeService } from '../Servicios/theme.service';
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
   standalone: false,
+
 })
 export class PerfilPage implements OnInit, AfterViewInit {
   constructor(

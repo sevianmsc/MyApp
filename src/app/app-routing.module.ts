@@ -1,3 +1,4 @@
+// src/app/app-routing.module.ts
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { authGuard } from './Guardias/auth.guard';
@@ -13,11 +14,12 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  // ... tus otras rutas protegidas como perfil, perfil-profe, qr, ramos, vista-usuarios
+  // Estas deben tener canActivate: [authGuard]
   {
     path: 'perfil',
-    loadChildren: () =>
-      import('./perfil/perfil.module').then((m) => m.PerfilPageModule),
-      canActivate: [authGuard],
+    loadChildren: () => import('./perfil/perfil.module').then((m) => m.PerfilPageModule),
+    canActivate: [authGuard],
   },
   {
     path: 'recuperar-contrasenia',
@@ -49,22 +51,24 @@ const routes: Routes = [
     loadChildren: () => import('./ramos/ramos.module').then( m => m.RamosPageModule),
     canActivate: [authGuard],
   },
+  // ... otras rutas que no necesiten guard (si las tienes)
+
+  // ***** CAMBIO CLAVE AQUI: LA RUTA 'ABOUT' DEBE ESTAR ANTES DEL CATCH-ALL (**) *****
+  {
+    path: 'about', // Ruta de 'about'
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+  },
+  // ******************************************************************************
 
   {
-    path: 'error',
+    path: 'error', // Tu ruta de error debe estar definida para que el redirect funcione
     loadChildren: () =>
       import('./error/error.module').then((m) => m.ErrorPageModule),
   },
   {
-    path: '**',
+    path: '**', // EL WILDCARD DEBE ESTAR AL FINAL
     redirectTo: 'error',
   },
-
-
-
-
-
-
 ];
 
 @NgModule({

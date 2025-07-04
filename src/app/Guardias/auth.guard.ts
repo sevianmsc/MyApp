@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   if (auth.isAuthenticated()) { // Usar isAuthenticated() que ya verifica isConnected()
     const role = auth.getUserRole();
 
-    //  Simplificar la lógica.  No es necesario verificar route.url.
+    // Simplificar la lógica. No es necesario verificar route.url.
     if (route.routeConfig?.path === 'perfil' && role !== 'student') {
       router.navigate(['/home'], { replaceUrl: true }); // Redirigir a home si el rol no coincide
       return false;
@@ -24,7 +24,11 @@ export const authGuard: CanActivateFn = (route, state) => {
 
     return true; // Permitir el acceso si el rol coincide o no se especifica la ruta.
   } else {
-    router.navigate(['/home'], { replaceUrl: true }); // Redirigir a home si no está autenticado
+    // ************* INICIO DEL ÚNICO CAMBIO *************
+    // Antes: router.navigate(['/home'], { replaceUrl: true });
+    router.navigate(['/error'], { replaceUrl: true }); // Redirigir a 'error' si no está autenticado
+    // ************* FIN DEL ÚNICO CAMBIO *************
+
     toastController.create({
       message: 'Debe autentificarse para acceder',
       duration: 1500,
